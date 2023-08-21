@@ -44,7 +44,7 @@ else()
     endif()
 endif()
 
-target_link_libraries(send-it PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt6::Network)
+target_link_libraries(send-it PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 
 set_target_properties(send-it PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
