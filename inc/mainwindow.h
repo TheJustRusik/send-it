@@ -32,5 +32,7 @@ private slots:
     void handleTcpConnection();
     void autoDeleteSlot();
     void changeNamePressed();
+    void connectBtnRls();
+    void devicePicked(QListWidgetItem* device);
 };
 #endif // MAINWINDOW_H

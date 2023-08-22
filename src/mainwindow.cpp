@@ -14,11 +14,13 @@ MainWindow::MainWindow(QWidget *parent)
     androidMulticastController("acquire");
 #endif
     ui->setupUi(this);
+
+    //get and show our name
     hostName = QHostInfo::localHostName();
-
     ui->lineEdit->setText(hostName);
+    qDebug() << "My name is: " << hostName;
 
-
+    //bind and connect signals of our sockets
     udpSocket = new QUdpSocket(this);
     tcpServer = new QTcpServer(this);
     udpSocket->bind(45454, QUdpSocket::ShareAddress);
@@ -26,7 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::handleBroadcast);
     connect(tcpServer, &QTcpServer::newConnection,
             this, &MainWindow::handleTcpConnection);
-    qDebug() << "My name is: " << hostName;
+    
+    //0.001% error handling :D
     if(!tcpServer->listen(QHostAddress::Any, 13378))
     {
         qDebug() << ("Couldn't start tcp server. Now other's can't connect to you!");
@@ -35,19 +38,26 @@ MainWindow::MainWindow(QWidget *parent)
     {
         qDebug() << ("TCP server started successfully!");
     }
-    broadcastTimer = new QTimer(this);
 
+    //every 1 second we will broadcast ourself for everyone
+    broadcastTimer = new QTimer(this);
     connect(broadcastTimer, &QTimer::timeout,
             this, &MainWindow::broadcast);
     broadcastTimer->start(1000);
 
+    //share our name and QListWidget with deviceList
     deviceList.myName = hostName;
     deviceList.list = ui->listWidget;
+
+    //every 1 sec QListWidget will be cleaned 
     autoDelete = new QTimer(this);
     connect(autoDelete, &QTimer::timeout,
             this, &MainWindow::autoDeleteSlot);
     autoDelete->start(1000);
 
+    //connect selecting device from QListWidget
+    connect(ui->listWidget, &QListWidget::itemPressed,
+            this, &MainWindow::devicePicked);
 }
 
 MainWindow::~MainWindow()
@@ -66,7 +76,6 @@ void MainWindow::broadcast(){
 void MainWindow::handleBroadcast(){
     QByteArray datagram;
     QHostAddress senderAddress;
-    //! [2]
     while (udpSocket->hasPendingDatagrams()) {
         datagram.resize(int(udpSocket->pendingDatagramSize()));
         udpSocket->readDatagram(datagram.data(), datagram.size(), &senderAddress);
@@ -77,6 +86,14 @@ void MainWindow::handleBroadcast(){
 
         }
     }
+}
+
+void MainWindow::connectBtnRls(){
+    qDebug() << "Connect btn released!";
+}
+
+void MainWindow::devicePicked(QListWidgetItem* device){
+    qDebug() << "device was selected" << device->text();
 }
 
 void MainWindow::handleTcpConnection(){

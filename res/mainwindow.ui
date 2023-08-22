@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>339</width>
-    <height>672</height>
+    <width>338</width>
+    <height>562</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,10 +116,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>connectButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>connectBtnRls()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>542</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>148</x>
+     <y>61</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>broadcast()</slot>
   <slot>hostNameChanged()</slot>
   <slot>changeNamePressed()</slot>
+  <slot>connectBtnRls()</slot>
+  <slot>devicePicked()</slot>
  </slots>
 </ui>
