@@ -1,5 +1,6 @@
 #ifndef DEVICELIST_H
 #define DEVICELIST_H
+
 #include <QString>
 #include <QTimer>
 #include <QTime>

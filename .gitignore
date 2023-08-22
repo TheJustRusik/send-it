@@ -1,5 +1,6 @@
 # VSCode build dirs and files
 /build
+/.vscode
 
 # C++ objects and libs
 *.slo

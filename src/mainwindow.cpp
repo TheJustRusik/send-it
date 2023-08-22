@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
+#include "../inc/mainwindow.h"
+#include "../res/ui_mainwindow.h"
 
 #if defined(Q_OS_ANDROID)
 #include <QtCore/qjniobject.h>

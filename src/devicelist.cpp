@@ -1,4 +1,5 @@
-#include "devicelist.h"
+#include "../inc/devicelist.h"
+
 #include <QtMath>
 #include <QTimer>
 
