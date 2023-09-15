@@ -21,7 +21,7 @@ set(PROJECT_SOURCES
         ./inc/mainwindow.h
         ./inc/devicelist.h
         ./res/mainwindow.ui
-)
+        src/pelengator.cpp inc/pelengator.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(send-it

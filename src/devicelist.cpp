@@ -27,3 +27,7 @@ void DeviceList::deleteTrash(){
         }
     }
 }
+
+DeviceList::DeviceList(QListWidget *list, QString name) : myName(name), list(list) {
+    qDebug() << "DeviceList constructor called with this params: myName(" << name << ")";
+}

@@ -14,9 +14,11 @@
 class DeviceList{
 private:
     QHash<QListWidgetItem*, QTime> devices;
-public:
-    QString myName;
     QListWidget* list;
+public:
+    DeviceList(QListWidget* list, QString name);
+
+    QString myName;
     void addItem(QString name, QHostAddress address);
     void deleteTrash();
 };

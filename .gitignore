@@ -1,3 +1,8 @@
+# CLion build dirs and files
+/.idea
+/cmake-build-debug
+/cmake-build-release
+
 # VSCode build dirs and files
 /build
 /.vscode
