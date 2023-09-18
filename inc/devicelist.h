@@ -1,5 +1,4 @@
-#ifndef DEVICELIST_H
-#define DEVICELIST_H
+#pragma once
 
 #include <QString>
 #include <QTimer>
@@ -11,16 +10,27 @@
 #include <QtNetwork>
 #include <QtCore>
 
-class DeviceList{
-private:
-    QHash<QListWidgetItem*, QTime> devices;
-    QListWidget* list;
-public:
-    DeviceList(QListWidget* list, QString name);
+namespace chr = std::chrono;
 
+struct TimeAndAddress{
+    QTime time;
+    QHostAddress address;
+};
+
+class DeviceList : public QObject{
+    Q_OBJECT
+private:
+    QHash<QListWidgetItem*, TimeAndAddress> devices;
+    QListWidget* list;
+    QTimer* clear_timer;
+    chr::milliseconds clear_delay;
+public:
+    DeviceList(QObject* parent, QListWidget* list, QString  name, chr::milliseconds clear_delay_ms);
     QString myName;
-    void addItem(QString name, QHostAddress address);
+    void addItem(const QString& name, const QHostAddress& address);
+    QHostAddress getAddress(QListWidgetItem* device);
+private slots:
     void deleteTrash();
 };
 
-#endif // DEVICELIST_H
+

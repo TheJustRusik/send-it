@@ -61,3 +61,8 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+# CLion build files
+
+cmake-build-debug
+cmake-build-release

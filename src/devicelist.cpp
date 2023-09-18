@@ -2,32 +2,43 @@
 
 #include <QtMath>
 #include <QTimer>
+#include <utility>
 
-void DeviceList::addItem(QString name, QHostAddress address){
-    QList<QListWidgetItem *> objs = list->findItems("Name: " + name + "\nAddress: " + address.toString(), Qt::MatchExactly);
+void DeviceList::addItem(const QString& name, const QHostAddress& address){
+    auto objs = list->findItems("Name: " + name + "\nAddress: " + address.toString(), Qt::MatchExactly);
     if(!objs.isEmpty()){
         if (objs.size() > 1) qDebug() << "WTF?";
-        devices[objs[0]] = QTime::currentTime();
+        devices[objs[0]] = TimeAndAddress{QTime::currentTime(), address};
 
     }else{
-        QListWidgetItem* obj = new QListWidgetItem("Name: " + name + "\nAddress: " + address.toString());
-        devices.insert(obj, QTime::currentTime());
+        auto* obj = new QListWidgetItem("Name: " + name + "\nAddress: " + address.toString());
+        devices.insert(obj, TimeAndAddress{QTime::currentTime(), address});
         list->addItem(obj);
     }
 }
 
 void DeviceList::deleteTrash(){
-    QHashIterator<QListWidgetItem*, QTime> it(devices);
-    QTime currentTime = QTime::currentTime();
+    qDebug() << "Clearing";
+    QHashIterator<QListWidgetItem*, TimeAndAddress> it(devices);
+    auto currentTime = QTime::currentTime();
     while (it.hasNext()) {
         it.next();
-        if(qAbs(currentTime.secsTo(it.value())) > 3){
+        if(qAbs(currentTime.msecsTo(it.value().time)) > clear_delay.count()){
             list->takeItem(list->row(it.key()));
             devices.remove(it.key());
         }
     }
 }
 
-DeviceList::DeviceList(QListWidget *list, QString name) : myName(name), list(list) {
-    qDebug() << "DeviceList constructor called with this params: myName(" << name << ")";
+QHostAddress DeviceList::getAddress(QListWidgetItem *device) {
+    return devices[device].address;
 }
+
+DeviceList::DeviceList(QObject* parent, QListWidget *list, QString name, chr::milliseconds clear_delay_ms) : QObject(parent), myName(std::move(name)), list(list), clear_delay(clear_delay_ms) {
+    clear_timer = new QTimer(this);
+    connect(clear_timer, &QTimer::timeout, this, &DeviceList::deleteTrash);
+    qDebug() << clear_delay.count();
+    clear_timer->start(clear_delay);
+
+}
+

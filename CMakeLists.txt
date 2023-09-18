@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-
+set(CMAKE_PREFIX_PATH "D:/Qt/6.5.1/mingw_64")
 project(send-it VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
@@ -21,7 +21,7 @@ set(PROJECT_SOURCES
         ./inc/mainwindow.h
         ./inc/devicelist.h
         ./res/mainwindow.ui
-        src/pelengator.cpp inc/pelengator.h)
+        src/pelengator.cpp inc/pelengator.h src/filemanager.cpp inc/filemanager.h)
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(send-it
