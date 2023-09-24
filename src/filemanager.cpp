@@ -1,6 +1,6 @@
 #include "../inc/filemanager.h"
 
-QString FileManager::calculateFileHash(const QString &filePath) {
+QString FileManager::calculate_file_hash(const QString &filePath) {
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly)) {
         return {};

@@ -15,13 +15,21 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network)
 
 
 set(PROJECT_SOURCES
-        ./src/main.cpp
-        ./src/mainwindow.cpp
-        ./src/devicelist.cpp
-        ./inc/mainwindow.h
-        ./inc/devicelist.h
-        ./res/mainwindow.ui
-        src/pelengator.cpp inc/pelengator.h src/filemanager.cpp inc/filemanager.h)
+        res/mainwindow.ui
+
+        src/main.cpp
+
+        inc/mainwindow.h
+        src/mainwindow.cpp
+        inc/devicelist.h
+        src/devicelist.cpp
+        inc/pelengator.h
+        src/pelengator.cpp
+        inc/filemanager.h
+        src/filemanager.cpp
+        inc/tcpmanager.h
+        src/tcpmanager.cpp
+    )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(send-it

@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     pelengator = new Pelengator(this, hostName, ui->listWidget);
     connect(ui->listWidget, &QListWidget::itemPressed, this, &MainWindow::devicePicked);
 
-    qDebug() << "File hash: " << FileManager::calculateFileHash("C://Users//7thej//Desktop//1.png");
+    qDebug() << "File hash: " << FileManager::calculate_file_hash("C://Users//7thej//Desktop//1.png");
 }
 
 void MainWindow::connectBtnRls(){
