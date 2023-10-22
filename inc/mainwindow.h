@@ -3,7 +3,7 @@
 #include <QMainWindow>
 #include <QtNetwork>
 #include <QtCore>
-
+#include <QFileDialog>
 #include "pelengator.h"
 
 QT_BEGIN_NAMESPACE
@@ -24,5 +24,6 @@ private slots:
     void connectBtnRls();
     void devicePicked(QListWidgetItem* device);
     void toMain();
+    void on_file_choose_button_released();
 };
 

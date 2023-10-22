@@ -42,19 +42,19 @@ Pelengator::~Pelengator() {
     android_multicast_release();
 }
 
-[[maybe_unused]] void Pelengator::android_multicast_acquire() {
+void Pelengator::android_multicast_acquire() {
 #if defined(Q_OS_ANDROID)
     QJniEnvironment env;
-    QJniObject::callStaticMethod<void>("com/governikus/ausweisapp2/MulticastLockJniBridgeUtil",
+    QJniObject::callStaticMethod<void>("dev/kenuki/sendit/MulticastLockJniBridgeUtil",
                                        "acquire",
                                        "(Landroid/content/Context;)V",
                                        QNativeInterface::QAndroidApplication::context());
 #endif
 }
-[[maybe_unused]] void Pelengator::android_multicast_release() {
+void Pelengator::android_multicast_release() {
 #if defined(Q_OS_ANDROID)
     QJniEnvironment env;
-    QJniObject::callStaticMethod<void>("com/governikus/ausweisapp2/MulticastLockJniBridgeUtil",
+    QJniObject::callStaticMethod<void>("dev/kenuki/sendit/MulticastLockJniBridgeUtil",
                                        "release",
                                        "(Landroid/content/Context;)V",
                                        QNativeInterface::QAndroidApplication::context());

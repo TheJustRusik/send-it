@@ -24,19 +24,49 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="broadcastPage">
+      <widget class="QWidget" name="broadcast_page">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="grid">
+          <item row="4" column="0">
+           <widget class="QPushButton" name="connect_button">
+            <property name="text">
+             <string>Подключиться</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="name_text">
+            <property name="text">
+             <string>Ваше имя:</string>
+            </property>
+           </widget>
+          </item>
           <item row="3" column="0">
-           <widget class="QListWidget" name="listWidget"/>
+           <widget class="QListWidget" name="devices_list"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="info_text">
+            <property name="text">
+             <string>Выберите устройство с которым вы хотите обмениваться данными</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::AutoText</enum>
+            </property>
+            <property name="scaledContents">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
           <item row="2" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout">
+           <layout class="QHBoxLayout" name="horizontal">
             <item>
-             <widget class="QLineEdit" name="lineEdit">
+             <widget class="QLineEdit" name="name_line_edit">
               <property name="minimumSize">
                <size>
                 <width>50</width>
@@ -52,7 +82,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="chngNmButton">
+             <widget class="QPushButton" name="change_name_button">
               <property name="text">
                <string>Изменить</string>
               </property>
@@ -60,55 +90,25 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="welcomeText">
-            <property name="text">
-             <string>Выберите устройство с которым вы хотите обмениваться данными</string>
-            </property>
-            <property name="textFormat">
-             <enum>Qt::AutoText</enum>
-            </property>
-            <property name="scaledContents">
-             <bool>false</bool>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0">
-           <widget class="QPushButton" name="connectButton">
-            <property name="text">
-             <string>Подключиться</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Ваше имя:</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="filePage">
+      <widget class="QWidget" name="sending_page">
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
-         <layout class="QGridLayout" name="gridLayout_3">
+         <layout class="QGridLayout" name="grid2">
           <item row="2" column="0">
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="send_button">
             <property name="text">
              <string> send it!</string>
             </property>
            </widget>
           </item>
           <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QHBoxLayout" name="horizontal2">
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="abort_tcp_connect_button">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -121,7 +121,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="file_choose_button">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -136,7 +136,7 @@
            </layout>
           </item>
           <item row="1" column="0">
-           <widget class="QListWidget" name="listWidget_2"/>
+           <widget class="QListWidget" name="files_list"/>
           </item>
          </layout>
         </item>
@@ -150,14 +150,14 @@
  <resources/>
  <connections>
   <connection>
-   <sender>chngNmButton</sender>
+   <sender>change_name_button</sender>
    <signal>released()</signal>
    <receiver>MainWindow</receiver>
    <slot>changeNamePressed()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>326</x>
-     <y>113</y>
+     <x>117</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>328</x>
@@ -166,14 +166,14 @@
    </hints>
   </connection>
   <connection>
-   <sender>connectButton</sender>
+   <sender>connect_button</sender>
    <signal>released()</signal>
    <receiver>MainWindow</receiver>
    <slot>connectBtnRls()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>99</x>
-     <y>548</y>
+     <x>117</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
      <x>148</x>
@@ -182,7 +182,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_4</sender>
+   <sender>abort_tcp_connect_button</sender>
    <signal>released()</signal>
    <receiver>MainWindow</receiver>
    <slot>toMain()</slot>
@@ -205,5 +205,7 @@
   <slot>connectBtnRls()</slot>
   <slot>devicePicked()</slot>
   <slot>toMain()</slot>
+  <slot>chooseFile()</slot>
+  <slot>sendIt()</slot>
  </slots>
 </ui>

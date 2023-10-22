@@ -1,4 +1,4 @@
-package com.governikus.ausweisapp2;
+package dev.kenuki.sendit;
 
 import android.content.Context;
 import android.net.wifi.WifiManager;

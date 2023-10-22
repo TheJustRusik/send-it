@@ -24,8 +24,8 @@ private:
     DeviceList* device_list;
 
 
-    [[maybe_unused]] void android_multicast_acquire();
-    [[maybe_unused]] void android_multicast_release();
+    void android_multicast_acquire();
+    void android_multicast_release();
 
 
 public:

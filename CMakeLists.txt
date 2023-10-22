@@ -35,6 +35,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(send-it
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET send-it APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
