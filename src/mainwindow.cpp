@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
+    
     ui->setupUi(this);
 
     //get and show our name
@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::connectBtnRls(){
     qDebug() << "Connect btn released!";
+    ui->pages->setCurrentIndex(1);
 }
 
 void MainWindow::devicePicked(QListWidgetItem* device){
@@ -41,3 +42,7 @@ void MainWindow::changeNamePressed(){
     }
 }
 
+void MainWindow::toMain(){
+    qDebug() << "Cancel button released!";
+    ui->pages->setCurrentIndex(0);
+}

@@ -23,5 +23,6 @@ private slots:
     void changeNamePressed();
     void connectBtnRls();
     void devicePicked(QListWidgetItem* device);
+    void toMain();
 };
 
