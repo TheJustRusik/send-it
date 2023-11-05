@@ -1,6 +1,7 @@
 #include "../inc/mainwindow.h"
 #include "../res/ui_mainwindow.h"
 #include "../inc/filemanager.h"
+#include <QDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,13 +17,19 @@ MainWindow::MainWindow(QWidget *parent)
     
     pelengator = new Pelengator(this, hostName, ui->devices_list);
     connect(ui->devices_list, &QListWidget::itemPressed, this, &MainWindow::devicePicked);
-
-    qDebug() << "File hash: " << FileManager::calculate_file_hash("C://Users//7thej//Desktop//1.png");
 }
 
 void MainWindow::connectBtnRls(){
     qDebug() << "Connect btn released!";
-    ui->pages->setCurrentIndex(1);
+    ConnectDialog a("TEST", nullptr);
+    if (a.exec() == QDialog::Accepted) {
+        qDebug() << "Accepted";
+        ui->pages->setCurrentIndex(1);
+    } else {
+        qDebug() << "Rejected";
+    }
+    
+
 }
 
 void MainWindow::devicePicked(QListWidgetItem* device){
@@ -49,9 +56,9 @@ void MainWindow::toMain(){
 
 void MainWindow::on_file_choose_button_released()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),
-                                                    "/home",
-                                                    tr("Images (*.png *.xpm *.jpg)"));
-
+    const auto choosen_files = QFileDialog::getOpenFileNames(this);
+    for (auto i : choosen_files){
+        qDebug() << "Hash:" << FileManager::calculate_file_hash(i) << "Path:" << i;
+    }
 }
 

@@ -4,6 +4,7 @@
 #include <QtNetwork>
 #include <QtCore>
 #include <QFileDialog>
+#include "dialogs/dialogwidget.h"
 #include "pelengator.h"
 
 QT_BEGIN_NAMESPACE

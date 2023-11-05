@@ -101,7 +101,7 @@
           <item row="2" column="0">
            <widget class="QPushButton" name="send_button">
             <property name="text">
-             <string> send it!</string>
+             <string>send it!</string>
             </property>
            </widget>
           </item>

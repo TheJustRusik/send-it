@@ -29,6 +29,8 @@ set(PROJECT_SOURCES
         src/filemanager.cpp
         inc/tcpmanager.h
         src/tcpmanager.cpp
+        inc/dialogs/dialogwidget.h
+        src/dialogs/dialogwidget.cpp
     )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
