@@ -20,7 +20,7 @@ public final class MulticastLockJniBridgeUtil
 		if (cLock == null)
 		{
 			WifiManager wifi = (WifiManager) pContext.getSystemService(Context.WIFI_SERVICE);
-			cLock = wifi.createMulticastLock("AusweisApp2");
+			cLock = wifi.createMulticastLock("Sendit");
 			cLock.setReferenceCounted(true);
 		}
 
